@@ -103,40 +103,10 @@ class Screen2 extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    SizedBox(
-                      height: 200,
-                      width: 180,
-                      child: Card(
-                        elevation: 20,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Car Company"),
-                            Text("Car Name"),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(20),
-                                child: Image(
-                                  image: AssetImage(
-                                      "assets/images/Maserati-Quattroporte.jpg"),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            Text("Daily"),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [Text("\$700"),
-                              Row(
-                                children: [
-                                Icon(Icons.star),
-                                  Text("5.0")
-                              ],)],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    CreateCards("LAND ROVER", "RANGE ROVER SPORT SVR", "assets/images/Range-Rover-Sport.webp", "\$500", "5.0"),
+                    CreateCards("VOLVO", "S90 D4 INSCRIPTION", "assets/images/volvo s90.jpg", "\$500", "5.0"),
+                    CreateCards("LAND ROVER", "RANGE ROVER SPORT SVR", "assets/images/Range-Rover-Sport.webp", "\$500", "5.0"),
+                    CreateCards("LAND ROVER", "RANGE ROVER SPORT SVR", "assets/images/Range-Rover-Sport.webp", "\$500", "5.0"),
                   ],
                 ),
               ),
@@ -189,4 +159,57 @@ class Screen2 extends StatelessWidget {
       ],
     );
   }
+}
+
+Widget CreateCards(company,name,image,price,rating){
+  return Padding(
+    padding: const EdgeInsets.all(15.0),
+    child: SizedBox(
+      height: 220,
+      width: 190,
+      child: Card(shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(23)
+      ),
+        // color: Color(0xfff18eff),
+
+        elevation: 20,
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(company,style: TextStyle(fontWeight: FontWeight.bold),),
+              Text(name,style: TextStyle(fontWeight: FontWeight.bold,
+              color: Colors.grey),),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Image(
+                    image: AssetImage(
+                        image),
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+              Text("Daily",style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.grey,
+              ),),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [Text(price,
+                style: TextStyle(fontWeight: FontWeight.bold),),
+                  Row(
+                    children: [
+                      Icon(Icons.star,color: Colors.orange,),
+                      Text(rating,style: TextStyle(color: Colors.grey,
+                      fontWeight: FontWeight.bold),)
+                    ],)],
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
 }

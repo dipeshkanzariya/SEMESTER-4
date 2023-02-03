@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:screen_project/Screen2.dart';
+import 'package:screen_project/home.dart';
 
 class Screen1 extends StatelessWidget {
   @override
@@ -40,11 +41,11 @@ class Screen1 extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 520,left: 80,right: 80),
+                  margin: EdgeInsets.only(top: 450,left: 80,right: 80),
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                        return Screen2();
+                        return NavigationBarPage();
                       },));
                     },
                     child: Row(
