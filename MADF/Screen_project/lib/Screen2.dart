@@ -1,5 +1,10 @@
+// import 'dart:js';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:screen_project/Screen3.dart';
+import 'package:screen_project/Screen4.dart';
+import 'package:screen_project/demo.dart';
 
 class Screen2 extends StatelessWidget {
   @override
@@ -71,7 +76,7 @@ class Screen2 extends StatelessWidget {
                 top: 40,
                 left: 20,
                 right: 20,
-                bottom: 30,
+                bottom: 0,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,10 +108,42 @@ class Screen2 extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    CreateCards("LAND ROVER", "RANGE ROVER SPORT SVR", "assets/images/Range-Rover-Sport.webp", "\$500", "5.0"),
-                    CreateCards("VOLVO", "S90 D4 INSCRIPTION", "assets/images/volvo s90.jpg", "\$500", "5.0"),
-                    CreateCards("LAND ROVER", "RANGE ROVER SPORT SVR", "assets/images/Range-Rover-Sport.webp", "\$500", "5.0"),
-                    CreateCards("LAND ROVER", "RANGE ROVER SPORT SVR", "assets/images/Range-Rover-Sport.webp", "\$500", "5.0"),
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return Screen3();
+                        },));
+                      },
+                      child: CreateCards("LAND ROVER", "RANGE ROVER SPORT SVR",
+                          "assets/images/Range-Rover-Sport.webp", "\$500", "5.0"),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return Screen4();
+                        },));
+                      },
+                      child: CreateCards("VOLVO", "S90 D4 INSCRIPTION",
+                          "assets/images/volvo s90.jpg", "\$500", "5.0"),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return Screen4();
+                        },));
+                      },
+                      child: CreateCards("LAND ROVER", "RANGE ROVER SPORT SVR",
+                          "assets/images/Range-Rover-Sport.webp", "\$500", "5.0"),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                          return Screen4();
+                        },));
+                      },
+                      child: CreateCards("LAND ROVER", "RANGE ROVER SPORT SVR",
+                          "assets/images/Range-Rover-Sport.webp", "\$500", "5.0"),
+                    ),
                   ],
                 ),
               ),
@@ -116,7 +153,6 @@ class Screen2 extends StatelessWidget {
       ),
     );
   }
-
   Widget CreateCarouselItem(image, name, price) {
     return Column(
       children: [
@@ -159,57 +195,84 @@ class Screen2 extends StatelessWidget {
       ],
     );
   }
-}
 
-Widget CreateCards(company,name,image,price,rating){
-  return Padding(
-    padding: const EdgeInsets.all(15.0),
-    child: SizedBox(
-      height: 220,
-      width: 190,
-      child: Card(shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(23)
-      ),
-        // color: Color(0xfff18eff),
-
-        elevation: 20,
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(company,style: TextStyle(fontWeight: FontWeight.bold),),
-              Text(name,style: TextStyle(fontWeight: FontWeight.bold,
-              color: Colors.grey),),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Image(
-                    image: AssetImage(
-                        image),
-                    fit: BoxFit.contain,
+  Widget CreateCards(company, name, image, price, rating) {
+    return InkWell(
+      // onTap: () {
+      //   Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      //     return Demo(image: image, company: company, name: name);
+      //   },));
+      // },
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: SizedBox(
+          height: 230,
+          width: 200,
+          child: Card(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(23)),
+            // color: Colors.grey,
+            elevation: 13,borderOnForeground: true,
+            shadowColor: Colors.blue,
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    company,
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                ),
-              ),
-              Text("Daily",style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.grey,
-              ),),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [Text(price,
-                style: TextStyle(fontWeight: FontWeight.bold),),
+                  Text(
+                    name,
+                    style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Image(
+                        image: AssetImage(image),
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    "Daily",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
+                    ),
+                  ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(Icons.star,color: Colors.orange,),
-                      Text(rating,style: TextStyle(color: Colors.grey,
-                      fontWeight: FontWeight.bold),)
-                    ],)],
+                      Text(
+                        price,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.star,
+                            color: Colors.orange,
+                          ),
+                          Text(
+                            rating,
+                            style: TextStyle(
+                                color: Colors.grey, fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
+
+

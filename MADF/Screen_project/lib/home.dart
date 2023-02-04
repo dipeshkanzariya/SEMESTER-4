@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:screen_project/Screen2.dart';
+import 'package:screen_project/Screen4.dart';
 
 class NavigationBarPage extends StatefulWidget {
   @override
@@ -29,61 +30,67 @@ class _NavigationBarPageState extends State<NavigationBarPage> {
       ),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
-      bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
-        notchMargin: 10,
-        child: Container(
-          height: 60,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  MaterialButton(
-                    minWidth: 40,
-                    onPressed: () {
-                      setState(() {
-                        currentScreen = Screen2();
-                        currentTab = 0;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.home,
-                          color: currentTab == 0 ? Colors.blue : Colors.grey,
-                        ),
-                      ],
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadius.circular(50),
+        child: BottomAppBar(
+          shape: CircularNotchedRectangle(),
+          color: Color.fromRGBO(225, 240, 255, 0.7),
+          notchMargin: 10,
+          child: Container(
+            height: 55,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    MaterialButton(
+                      minWidth: 180,
+                      onPressed: () {
+                        setState(() {
+                          currentScreen = Screen2();
+                          currentTab = 0;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.home,
+                            size: 35,
+                            color: currentTab == 0 ? Colors.blue : Colors.grey,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  MaterialButton(
-                    minWidth: 40,
-                    onPressed: () {
-                      setState(() {
-                        currentScreen = Screen2();
-                        currentTab = 1;
-                      });
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.bookmark,
-                          color: currentTab == 1 ? Colors.blue : Colors.grey,
-                        ),
-                      ],
+                  ],
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    MaterialButton(
+                      minWidth: 180,
+                      onPressed: () {
+                        setState(() {
+                          currentScreen = Screen4();
+                          currentTab = 1;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.bookmark,
+                            size: 35,
+                            color: currentTab == 1 ? Colors.blue : Colors.grey,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
