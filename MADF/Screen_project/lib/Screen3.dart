@@ -1,10 +1,42 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:screen_project/Screen2.dart';
+import 'package:screen_project/home.dart';
 
-class Screen3 extends StatelessWidget {
+class Screen3 extends StatefulWidget {
+  var company,
+      name,
+      img1,
+      img2,
+      img3,
+      color,
+      colorbox,
+      gearbox,
+      year,
+      seat,
+      model,
+      type;
+
+  Screen3(
+      {super.key,
+      required this.company,
+      required this.name,
+      required this.img1,
+      required this.img2,
+      required this.img3,
+      required this.color,
+      required this.colorbox,
+      required this.gearbox,
+      required this.model,
+      required this.seat,
+      required this.type,
+      required this.year});
+
   @override
+  State<Screen3> createState() => _Screen3State();
+}
 
+class _Screen3State extends State<Screen3> {
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -17,9 +49,11 @@ class Screen3 extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                        return Screen2();
-                      },));
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) {
+                          return NavigationBarPage();
+                        },
+                      ));
                     },
                     child: Icon(Icons.arrow_back),
                   ),
@@ -37,19 +71,19 @@ class Screen3 extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.all(10),
+              margin: EdgeInsets.all(15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "LAND ROVER",
+                    widget.company,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                     ),
                   ),
                   Text(
-                    "RANGE ROVER SPORT SVR",
+                    widget.name,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -60,10 +94,9 @@ class Screen3 extends StatelessWidget {
             ),
             CarouselSlider(
               items: [
-                CreateCarouselItem("assets/images/Range-Rover-Sport.webp"),
-                CreateCarouselItem("assets/images/range rover interior.webp"),
-                CreateCarouselItem("assets/images/rr gear.webp"),
-                CreateCarouselItem("assets/images/rr seat.webp"),
+                CreateCarouselItem(widget.img1),
+                CreateCarouselItem(widget.img2),
+                CreateCarouselItem(widget.img3),
               ],
               options: CarouselOptions(
                 height: 200.0,
@@ -88,7 +121,7 @@ class Screen3 extends StatelessWidget {
             ),
             Container(
               width: double.infinity,
-              height: 180,
+              height: 200,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
@@ -96,16 +129,34 @@ class Screen3 extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          CreateListcard(title1: "Color", title2: "Red", color: Colors.blue),
-                          CreateListcard(title1: "Gearbox", title2: "Automatic", color: Colors.white),
-                          CreateListcard(title1: "Year", title2: "2011", color: Colors.white),
+                          CreateListcard(
+                              title1: "Color",
+                              title2: widget.color,
+                              color: widget.colorbox),
+                          CreateListcard(
+                              title1: "Gearbox",
+                              title2: widget.gearbox,
+                              color: Colors.white),
+                          CreateListcard(
+                              title1: "Year",
+                              title2: widget.year,
+                              color: Colors.white),
                         ],
                       ),
                       Row(
                         children: [
-                          CreateListcard(title1: "Seat", title2: "4", color: Colors.white),
-                          CreateListcard(title1: "Model", title2: "Turbo S", color: Colors.white),
-                          CreateListcard(title1: "Type", title2: "Sedan", color: Colors.white),
+                          CreateListcard(
+                              title1: "Seat",
+                              title2: widget.seat,
+                              color: Colors.white),
+                          CreateListcard(
+                              title1: "Model",
+                              title2: widget.model,
+                              color: Colors.white),
+                          CreateListcard(
+                              title1: "Type",
+                              title2: widget.type,
+                              color: Colors.white),
                         ],
                       ),
                     ],
@@ -217,7 +268,7 @@ Widget CreateListcard({required title1, required title2, required color}) {
     ),
     height: 75,
     width: 145,
-    margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+    margin: EdgeInsets.only(top: 15, left: 10, right: 10),
     padding: EdgeInsets.all(10),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -237,19 +288,23 @@ Widget CreateListcard({required title1, required title2, required color}) {
             ),
             Text(
               title2,
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ],
         ),
-        Container(height: 20,width: 20,decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [BoxShadow(
-            color: color,
-            blurRadius: 4,
-          )],
-        ),)
+        Container(
+          height: 20,
+          width: 20,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: color,
+                blurRadius: 4,
+              )
+            ],
+          ),
+        )
       ],
     ),
   );
@@ -290,9 +345,7 @@ Widget CreatePriceCard({required title1, required title2}) {
             ),
             Text(
               title2,
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ],
         ),

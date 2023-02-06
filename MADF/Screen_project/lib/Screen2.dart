@@ -90,7 +90,11 @@ class Screen2 extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        return Screen4();
+                      },));
+                    },
                     child: Row(
                       children: [
                         Text("See More"),
@@ -102,50 +106,78 @@ class Screen2 extends StatelessWidget {
               ),
             ),
             Container(
+              width: double.infinity,
+              height: 300,
               decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(40)),
-              child: SingleChildScrollView(
+                  BoxDecoration(borderRadius: BorderRadius.circular(23)),
+              child: ListView(
                 scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return Screen3();
-                        },));
-                      },
-                      child: CreateCards("LAND ROVER", "RANGE ROVER SPORT SVR",
-                          "assets/images/Range-Rover-Sport.webp", "\$500", "5.0"),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return Screen4();
-                        },));
-                      },
-                      child: CreateCards("VOLVO", "S90 D4 INSCRIPTION",
-                          "assets/images/volvo s90.jpg", "\$500", "5.0"),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return Screen4();
-                        },));
-                      },
-                      child: CreateCards("LAND ROVER", "RANGE ROVER SPORT SVR",
-                          "assets/images/Range-Rover-Sport.webp", "\$500", "5.0"),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                          return Screen4();
-                        },));
-                      },
-                      child: CreateCards("LAND ROVER", "RANGE ROVER SPORT SVR",
-                          "assets/images/Range-Rover-Sport.webp", "\$500", "5.0"),
-                    ),
-                  ],
-                ),
+                children: [
+                  CreateCards(
+                      context,
+                      "JAGUAR",
+                      "XJL PORTFOLIO",
+                      "assets/images/jaguar.webp",
+                      "assets/images/jaguar int.jpg",
+                      "assets/images/jaguar rear interior.webp",
+                      "Black",
+                      Colors.black,
+                      "Automatic",
+                      "Turbo",
+                      "5",
+                      "Sedan",
+                      "2018",
+                      "4.3",
+                      "\$1265"),
+                  CreateCards(
+                      context,
+                      "BMW",
+                      "X7 XDRIVE30D DPE SIGNATURE",
+                      "assets/images/bmw.webp",
+                      "assets/images/signature int.jpg",
+                      "assets/images/signature int 2.jpg",
+                      "Black",
+                      Colors.black,
+                      "Automatic",
+                      "Turbo",
+                      "6",
+                      "SUV",
+                      "2021",
+                      "4.8",
+                      "\$2325"),
+                  CreateCards(
+                      context,
+                      "LAND ROVER",
+                      "RANGE ROVER SPORT SVR",
+                      "assets/images/Range-Rover-Sport.webp",
+                      "assets/images/range rover interior.webp",
+                      "assets/images/rr gear.webp",
+                      "Blue",
+                      Colors.blue,
+                      "Automatic",
+                      "SuperC.",
+                      "5",
+                      "SUV",
+                      "2018",
+                      "4.1",
+                      "\$3770"),
+                  CreateCards(
+                      context,
+                      "MINI COOPER",
+                      "S JCW INSPIRED",
+                      "assets/images/mini cooper.jpeg",
+                      "assets/images/mini int.jpg",
+                      "assets/images/mini int 2.jpg",
+                      "Saga Green",
+                      Colors.blueGrey,
+                      "Automatic",
+                      "Turbo",
+                      "5",
+                      "SUV",
+                      "2022",
+                      "4.4",
+                      "\$960"),
+                ],
               ),
             )
           ],
@@ -153,6 +185,7 @@ class Screen2 extends StatelessWidget {
       ),
     );
   }
+
   Widget CreateCarouselItem(image, name, price) {
     return Column(
       children: [
@@ -196,23 +229,39 @@ class Screen2 extends StatelessWidget {
     );
   }
 
-  Widget CreateCards(company, name, image, price, rating) {
+  Widget CreateCards(context, company, name, img1, img2, img3, color, colorbox,
+      gearbox, model, seat, type, year, rating, price) {
     return InkWell(
-      // onTap: () {
-      //   Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      //     return Demo(image: image, company: company, name: name);
-      //   },));
-      // },
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) {
+            return Screen3(
+                company: company,
+                name: name,
+                img1: img1,
+                img2: img2,
+                img3: img3,
+                color: color,
+                colorbox: colorbox,
+                gearbox: gearbox,
+                model: model,
+                seat: seat,
+                type: type,
+                year: year);
+          },
+        ));
+      },
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: SizedBox(
-          height: 230,
-          width: 200,
+          height: 250,
+          width: 220,
           child: Card(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(23)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(23)),
             // color: Colors.grey,
-            elevation: 13,borderOnForeground: true,
-            shadowColor: Colors.blue,
+            elevation: 15,
+            shadowColor: Colors.grey,
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Column(
@@ -224,14 +273,14 @@ class Screen2 extends StatelessWidget {
                   ),
                   Text(
                     name,
-                    style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.grey),
                   ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(10),
                       child: Image(
-                        image: AssetImage(image),
+                        image: AssetImage(img1),
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -259,7 +308,8 @@ class Screen2 extends StatelessWidget {
                           Text(
                             rating,
                             style: TextStyle(
-                                color: Colors.grey, fontWeight: FontWeight.bold),
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold),
                           )
                         ],
                       )
@@ -274,5 +324,3 @@ class Screen2 extends StatelessWidget {
     );
   }
 }
-
-

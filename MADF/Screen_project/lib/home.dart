@@ -37,7 +37,7 @@ class _NavigationBarPageState extends State<NavigationBarPage> {
           color: Color.fromRGBO(225, 240, 255, 0.7),
           notchMargin: 10,
           child: Container(
-            height: 55,
+            height: 65,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
