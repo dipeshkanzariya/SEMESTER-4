@@ -32,83 +32,60 @@ class _Screen2State extends State<Screen2> {
     map['rating'] = "4.3";
     map['price'] = "\$1275";
     map['isFav'] = false;
-    map['isHover'] = false;
+    cars.add(map);
+
+    map = {};
+    map['company'] = "LAND ROVER";
+    map['name'] = "RANGE ROVER SPORT SVR";
+    map['img1'] = "assets/images/Range-Rover-Sport.png";
+    map['img2'] = "assets/images/range rover interior.webp";
+    map['img3'] = "assets/images/rr gear.webp";
+    map['color'] = "Blue";
+    map['colorbox'] = Colors.blue;
+    map['gearbox'] = "Automatic";
+    map['model'] = "Super C";
+    map['seat'] = "5";
+    map['type'] = "SUV";
+    map['year'] = "2018";
+    map['rating'] = "4.5";
+    map['price'] = "\$3839";
+    map['isFav'] = false;
+    cars.add(map);
+
+    map = {};
+    map['company'] = "MINI COOPER";
+    map['name'] = "S JCW INSPIRED";
+    map['img1'] = "assets/images/mini_cooper.png";
+    map['img2'] = "assets/images/mini int.jpg";
+    map['img3'] = "assets/images/mini int 2.jpg";
+    map['color'] = "Saga Green";
+    map['colorbox'] = Colors.blueGrey;
+    map['gearbox'] = "Automatic";
+    map['model'] = "Turbo";
+    map['seat'] = "5";
+    map['type'] = "Sedan";
+    map['year'] = "2022";
+    map['rating'] = "4.6";
+    map['price'] = "\$955";
+    map['isFav'] = false;
     cars.add(map);
 
     map = {};
     map['company'] = "JAGUAR";
     map['name'] = "XJL PORTFOLIO";
-    map['img1'] = "assets/images/jaguar.png";
-    map['img2'] = "assets/images/jaguar int.jpg";
-    map['img3'] = "assets/images/jaguar rear interior.webp";
+    map['img1'] = "assets/images/bmw.png";
+    map['img2'] = "assets/images/signature int.jpg";
+    map['img3'] = "assets/images/signature int 2.jpg";
     map['color'] = "Black";
     map['colorbox'] = Colors.black;
     map['gearbox'] = "Automatic";
     map['model'] = "Turbo";
     map['seat'] = "5";
-    map['type'] = "Sedan";
-    map['year'] = "2018";
-    map['rating'] = "4.3";
-    map['price'] = "\$1275";
+    map['type'] = "SUV";
+    map['year'] = "2019";
+    map['rating'] = "4.8";
+    map['price'] = "\$1580";
     map['isFav'] = false;
-    map['isHover'] = false;
-    cars.add(map);
-
-    map = {};
-    map['company'] = "JAGUAR";
-    map['name'] = "XJL PORTFOLIO";
-    map['img1'] = "assets/images/jaguar.png";
-    map['img2'] = "assets/images/jaguar int.jpg";
-    map['img3'] = "assets/images/jaguar rear interior.webp";
-    map['color'] = "Black";
-    map['colorbox'] = Colors.black;
-    map['gearbox'] = "Automatic";
-    map['model'] = "Turbo";
-    map['seat'] = "5";
-    map['type'] = "Sedan";
-    map['year'] = "2018";
-    map['rating'] = "4.3";
-    map['price'] = "\$1275";
-    map['isFav'] = false;
-    map['isHover'] = false;
-    cars.add(map);
-
-    map = {};
-    map['company'] = "JAGUAR";
-    map['name'] = "XJL PORTFOLIO";
-    map['img1'] = "assets/images/jaguar.png";
-    map['img2'] = "assets/images/jaguar int.jpg";
-    map['img3'] = "assets/images/jaguar rear interior.webp";
-    map['color'] = "Black";
-    map['colorbox'] = Colors.black;
-    map['gearbox'] = "Automatic";
-    map['model'] = "Turbo";
-    map['seat'] = "5";
-    map['type'] = "Sedan";
-    map['year'] = "2018";
-    map['rating'] = "4.3";
-    map['price'] = "\$1275";
-    map['isFav'] = false;
-    map['isHover'] = false;
-    cars.add(map);
-
-    map = {};
-    map['company'] = "JAGUAR";
-    map['name'] = "XJL PORTFOLIO";
-    map['img1'] = "assets/images/jaguar.png";
-    map['img2'] = "assets/images/jaguar int.jpg";
-    map['img3'] = "assets/images/jaguar rear interior.webp";
-    map['color'] = "Black";
-    map['colorbox'] = Colors.black;
-    map['gearbox'] = "Automatic";
-    map['model'] = "Turbo";
-    map['seat'] = "5";
-    map['type'] = "Sedan";
-    map['year'] = "2018";
-    map['rating'] = "4.3";
-    map['price'] = "\$1275";
-    map['isFav'] = false;
-    map['isHover'] = false;
     cars.add(map);
 
     super.initState();
@@ -116,6 +93,7 @@ class _Screen2State extends State<Screen2> {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -230,7 +208,7 @@ class _Screen2State extends State<Screen2> {
                 ),
               ),
               Container(
-                height: 290,
+                height: height.height*0.35,
                 child: ListView.builder(
                   itemCount: cars.length,
                   scrollDirection: Axis.horizontal,
@@ -257,9 +235,6 @@ class _Screen2State extends State<Screen2> {
                               year: cars[index]['year'],
                             );
                           },));
-                        // )).then((value) {
-                        //   cars[index]['isfav'] = value;
-                        // },);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
