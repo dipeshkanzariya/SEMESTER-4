@@ -40,6 +40,30 @@ class _Screen3State extends State<Screen3> {
   int _current = 0;
   bool cardColor = false;
   String totalPrice = "0";
+  List<Map> prices = [];
+
+  @override
+  void initState() {
+    Map<String, dynamic> map = {};
+    map['month'] = '12 months';
+    map['price'] = '7200';
+    map['isFav'] = false;
+    prices.add(map);
+
+    map = {};
+    map['month'] = '6 months';
+    map['price'] = '3600';
+    map['isFav'] = false;
+    prices.add(map);
+
+    map = {};
+    map['month'] = '3 months';
+    map['price'] = '2400';
+    map['isFav'] = false;
+    prices.add(map);
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,17 +74,14 @@ class _Screen3State extends State<Screen3> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                margin: EdgeInsets.only(top: 20, bottom: 10, left: 20, right: 20),
+                margin:
+                    EdgeInsets.only(top: 20, bottom: 10, left: 20, right: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) {
-                            return NavigationBarPage();
-                          },
-                        ));
+                        Navigator.of(context).pop();
                       },
                       child: Icon(Icons.arrow_back),
                     ),
@@ -124,11 +145,12 @@ class _Screen3State extends State<Screen3> {
               Center(
                 child: Container(
                     margin: EdgeInsets.only(top: 10),
-                    child:
-                        AnimatedSmoothIndicator(activeIndex: _current, count: 3)),
+                    child: AnimatedSmoothIndicator(
+                        activeIndex: _current, count: 3)),
               ),
               Container(
-                margin: EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 0),
+                margin:
+                    EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 0),
                 child: Text(
                   "Specifications",
                   style: TextStyle(
@@ -183,7 +205,8 @@ class _Screen3State extends State<Screen3> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 0),
+                margin:
+                    EdgeInsets.only(left: 15, right: 15, top: 10,bottom: 10),
                 child: Text(
                   "Price",
                   style: TextStyle(
@@ -193,19 +216,61 @@ class _Screen3State extends State<Screen3> {
                 ),
               ),
               Container(
-                width: double.infinity,
-                height: 85,
-                child: ListView(
+                height: 80,
+                child: ListView.builder(
+                  itemCount: prices.length,
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    Row(
-                      children: [
-                        CreatePriceCard(title1: "12", title2: "\$7200"),
-                        CreatePriceCard(title1: "6", title2: "\$3100"),
-                        CreatePriceCard(title1: "3", title2: "\$2400"),
-                      ],
-                    ),
-                  ],
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        totalPrice = prices[index]['price'];
+                        prices[index]['isFav'] = !prices[index]['isFav'];
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: !prices[index]['isFav'] ? Colors.white : Colors.blue,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 5,
+                                offset: const Offset(5, 5),
+                              ),
+                            ],
+                          ),
+                          width: 145,
+                          margin: EdgeInsets.only(top: 0, left: 10, right: 10),
+                          padding: EdgeInsets.all(10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    prices[index]['month'],
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    prices[index]['price'],
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
               Container(
@@ -330,58 +395,6 @@ class _Screen3State extends State<Screen3> {
             ),
           )
         ],
-      ),
-    );
-  }
-
-  Widget CreatePriceCard({required title1, required title2}) {
-    return InkWell(
-      onTap: () {
-        setState(() {
-          totalPrice = title2;
-          cardColor = !cardColor;
-        });
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          color: !cardColor ? Colors.white : Colors.blue,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey,
-              blurRadius: 5,
-              offset: const Offset(5, 5),
-            ),
-          ],
-        ),
-        height: 70,
-        width: 145,
-        margin: EdgeInsets.only(top: 0, left: 10, right: 10),
-        padding: EdgeInsets.all(10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "$title1 Months",
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 3,
-                ),
-                Text(
-                  title2,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ],
-        ),
       ),
     );
   }

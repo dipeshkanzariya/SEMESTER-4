@@ -12,9 +12,105 @@ class Screen2 extends StatefulWidget {
 class _Screen2State extends State<Screen2> {
   int _current = 0;
   var cardColor = false;
+  List<Map> cars = [];
 
   @override
   void initState() {
+    Map<String, dynamic> map = {};
+    map['company'] = "JAGUAR";
+    map['name'] = "XJL PORTFOLIO";
+    map['img1'] = "assets/images/jaguar.png";
+    map['img2'] = "assets/images/jaguar int.jpg";
+    map['img3'] = "assets/images/jaguar rear interior.webp";
+    map['color'] = "Black";
+    map['colorbox'] = Colors.black;
+    map['gearbox'] = "Automatic";
+    map['model'] = "Turbo";
+    map['seat'] = "5";
+    map['type'] = "Sedan";
+    map['year'] = "2018";
+    map['rating'] = "4.3";
+    map['price'] = "\$1275";
+    map['isFav'] = false;
+    map['isHover'] = false;
+    cars.add(map);
+
+    map = {};
+    map['company'] = "JAGUAR";
+    map['name'] = "XJL PORTFOLIO";
+    map['img1'] = "assets/images/jaguar.png";
+    map['img2'] = "assets/images/jaguar int.jpg";
+    map['img3'] = "assets/images/jaguar rear interior.webp";
+    map['color'] = "Black";
+    map['colorbox'] = Colors.black;
+    map['gearbox'] = "Automatic";
+    map['model'] = "Turbo";
+    map['seat'] = "5";
+    map['type'] = "Sedan";
+    map['year'] = "2018";
+    map['rating'] = "4.3";
+    map['price'] = "\$1275";
+    map['isFav'] = false;
+    map['isHover'] = false;
+    cars.add(map);
+
+    map = {};
+    map['company'] = "JAGUAR";
+    map['name'] = "XJL PORTFOLIO";
+    map['img1'] = "assets/images/jaguar.png";
+    map['img2'] = "assets/images/jaguar int.jpg";
+    map['img3'] = "assets/images/jaguar rear interior.webp";
+    map['color'] = "Black";
+    map['colorbox'] = Colors.black;
+    map['gearbox'] = "Automatic";
+    map['model'] = "Turbo";
+    map['seat'] = "5";
+    map['type'] = "Sedan";
+    map['year'] = "2018";
+    map['rating'] = "4.3";
+    map['price'] = "\$1275";
+    map['isFav'] = false;
+    map['isHover'] = false;
+    cars.add(map);
+
+    map = {};
+    map['company'] = "JAGUAR";
+    map['name'] = "XJL PORTFOLIO";
+    map['img1'] = "assets/images/jaguar.png";
+    map['img2'] = "assets/images/jaguar int.jpg";
+    map['img3'] = "assets/images/jaguar rear interior.webp";
+    map['color'] = "Black";
+    map['colorbox'] = Colors.black;
+    map['gearbox'] = "Automatic";
+    map['model'] = "Turbo";
+    map['seat'] = "5";
+    map['type'] = "Sedan";
+    map['year'] = "2018";
+    map['rating'] = "4.3";
+    map['price'] = "\$1275";
+    map['isFav'] = false;
+    map['isHover'] = false;
+    cars.add(map);
+
+    map = {};
+    map['company'] = "JAGUAR";
+    map['name'] = "XJL PORTFOLIO";
+    map['img1'] = "assets/images/jaguar.png";
+    map['img2'] = "assets/images/jaguar int.jpg";
+    map['img3'] = "assets/images/jaguar rear interior.webp";
+    map['color'] = "Black";
+    map['colorbox'] = Colors.black;
+    map['gearbox'] = "Automatic";
+    map['model'] = "Turbo";
+    map['seat'] = "5";
+    map['type'] = "Sedan";
+    map['year'] = "2018";
+    map['rating'] = "4.3";
+    map['price'] = "\$1275";
+    map['isFav'] = false;
+    map['isHover'] = false;
+    cars.add(map);
+
     super.initState();
   }
 
@@ -73,7 +169,7 @@ class _Screen2State extends State<Screen2> {
                       "PORSCHE 718 BOXSTER", "\$1580 per month"),
                 ],
                 options: CarouselOptions(
-                  height: 210.0,
+                  height: 220.0,
                   enlargeCenterPage: true,
                   autoPlay: true,
                   aspectRatio: 16 / 9,
@@ -134,80 +230,116 @@ class _Screen2State extends State<Screen2> {
                 ),
               ),
               Container(
-                width: double.infinity,
                 height: 290,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(23)),
-                child: ListView(
+                child: ListView.builder(
+                  itemCount: cars.length,
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    CreateCards(
-                        context,
-                        "JAGUAR",
-                        "XJL PORTFOLIO",
-                        "assets/images/jaguar.png",
-                        "assets/images/jaguar int.jpg",
-                        "assets/images/jaguar rear interior.webp",
-                        "Black",
-                        Colors.black,
-                        "Automatic",
-                        "Turbo",
-                        "5",
-                        "Sedan",
-                        "2018",
-                        "4.3",
-                        "\$1265"),
-                    CreateCards(
-                        context,
-                        "BMW",
-                        "X7 XDRIVE30D DPE SIGNATURE",
-                        "assets/images/bmw.png",
-                        "assets/images/signature int.jpg",
-                        "assets/images/signature int 2.jpg",
-                        "Black",
-                        Colors.black,
-                        "Automatic",
-                        "Turbo",
-                        "6",
-                        "SUV",
-                        "2021",
-                        "4.8",
-                        "\$2325"),
-                    CreateCards(
-                        context,
-                        "LAND ROVER",
-                        "RANGE ROVER SPORT SVR",
-                        "assets/images/Range-Rover-Sport.png",
-                        "assets/images/range rover interior.webp",
-                        "assets/images/rr gear.webp",
-                        "Blue",
-                        Colors.blue,
-                        "Automatic",
-                        "SuperC.",
-                        "5",
-                        "SUV",
-                        "2018",
-                        "4.1",
-                        "\$3770"),
-                    CreateCards(
-                        context,
-                        "MINI COOPER",
-                        "S JCW INSPIRED",
-                        "assets/images/mini_cooper.png",
-                        "assets/images/mini int.jpg",
-                        "assets/images/mini int 2.jpg",
-                        "Saga Green",
-                        Colors.blueGrey,
-                        "Automatic",
-                        "Turbo",
-                        "5",
-                        "SUV",
-                        "2022",
-                        "4.4",
-                        "\$960"),
-                  ],
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        setState(() {
+                          cars[index]['isFav'] = !(cars[index]['isFav']);
+                        });
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) {
+                            return Screen3(
+                              company: cars[index]['company'],
+                              name: cars[index]['name'],
+                              img1: cars[index]['img1'],
+                              img2: cars[index]['img2'],
+                              img3: cars[index]['img3'],
+                              color: cars[index]['color'],
+                              colorbox: cars[index]['colorbox'],
+                              gearbox: cars[index]['gearbox'],
+                              model: cars[index]['model'],
+                              seat: cars[index]['seat'],
+                              type: cars[index]['type'],
+                              year: cars[index]['year'],
+                            );
+                          },));
+                        // )).then((value) {
+                        //   cars[index]['isfav'] = value;
+                        // },);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: SizedBox(
+                          height: 250,
+                          width: 220,
+                          child: Card(
+                            color: !cars[index]['isFav'] ? Colors.white : Colors.blue ,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(23)),
+                            // color: Colors.grey,
+                            elevation: 15,
+                            shadowColor: Colors.grey,
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    cars[index]['company'],
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    cars[index]['name'],
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Image(
+                                        image: AssetImage(cars[index]['img1']),
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                  ),
+                                  Text(
+                                    "Daily",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        cars[index]['price'],
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.star,
+                                            color: Colors.orange,
+                                          ),
+                                          Text(
+                                            cars[index]['rating'],
+                                            style: TextStyle(
+                                                color: Colors.grey,
+                                                fontWeight: FontWeight.bold),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -282,104 +414,4 @@ class _Screen2State extends State<Screen2> {
     );
   }
 
-  Widget CreateCards(context, company, name, img1, img2, img3, color, colorbox,
-      gearbox, model, seat, type, year, rating, price) {
-    return InkWell(
-      onTap: () {
-        setState(() {
-          if (cardColor == false) {
-            cardColor = !cardColor;
-          }
-        });
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) {
-            return Screen3(
-                company: company,
-                name: name,
-                img1: img1,
-                img2: img2,
-                img3: img3,
-                color: color,
-                colorbox: colorbox,
-                gearbox: gearbox,
-                model: model,
-                seat: seat,
-                type: type,
-                year: year);
-          },
-        ));
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: SizedBox(
-          height: 250,
-          width: 220,
-          child: Card(
-            color: !cardColor ? Colors.white : Colors.blue,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(23)),
-            // color: Colors.grey,
-            elevation: 15,
-            shadowColor: Colors.grey,
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    company,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    name,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.grey),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Image(
-                        image: AssetImage(img1),
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    "Daily",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        price,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.star,
-                            color: Colors.orange,
-                          ),
-                          Text(
-                            rating,
-                            style: TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }
