@@ -216,7 +216,7 @@ class _Screen2State extends State<Screen2> {
                     return InkWell(
                       onTap: () {
                         setState(() {
-                          cars[index]['isFav'] = !(cars[index]['isFav']);
+                          cars[index]['isFav'] = true;
                         });
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) {
@@ -233,8 +233,11 @@ class _Screen2State extends State<Screen2> {
                               seat: cars[index]['seat'],
                               type: cars[index]['type'],
                               year: cars[index]['year'],
+                              isFav: cars[index]['isFav'],
                             );
-                          },));
+                          },)).then((value) {
+                            cars[index]['isFav'] = value;
+                          },);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),

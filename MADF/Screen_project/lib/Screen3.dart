@@ -15,7 +15,8 @@ class Screen3 extends StatefulWidget {
       year,
       seat,
       model,
-      type;
+      type,
+      isFav;
 
   Screen3(
       {super.key,
@@ -30,7 +31,8 @@ class Screen3 extends StatefulWidget {
       required this.model,
       required this.seat,
       required this.type,
-      required this.year});
+      required this.year,
+      required this.isFav});
 
   @override
   State<Screen3> createState() => _Screen3State();
@@ -38,7 +40,7 @@ class Screen3 extends StatefulWidget {
 
 class _Screen3State extends State<Screen3> {
   int _current = 0;
-  bool cardColor = false;
+  var cardIndex;
   String totalPrice = "0";
   List<Map> prices = [];
 
@@ -81,7 +83,7 @@ class _Screen3State extends State<Screen3> {
                   children: [
                     InkWell(
                       onTap: () {
-                        Navigator.of(context).pop();
+                        Navigator.of(context).pop(widget.isFav = false);
                       },
                       child: Icon(Icons.arrow_back),
                     ),
@@ -206,7 +208,7 @@ class _Screen3State extends State<Screen3> {
               ),
               Container(
                 margin:
-                    EdgeInsets.only(left: 15, right: 15, top: 10,bottom: 10),
+                    EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
                 child: Text(
                   "Price",
                   style: TextStyle(
@@ -223,14 +225,16 @@ class _Screen3State extends State<Screen3> {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
+                        cardIndex = index;
                         totalPrice = prices[index]['price'];
-                        prices[index]['isFav'] = !prices[index]['isFav'];
+                        // prices[index]['isFav'] = !prices[index]['isFav'];
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: !prices[index]['isFav'] ? Colors.white : Colors.blue,
+                            color:
+                                cardIndex == index ? Colors.blue : Colors.white,
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: [
                               BoxShadow(
@@ -252,7 +256,9 @@ class _Screen3State extends State<Screen3> {
                                   Text(
                                     prices[index]['month'],
                                     style: TextStyle(
-                                        color: Colors.grey,
+                                        color: cardIndex == index
+                                            ? Colors.white
+                                            : Colors.grey,
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold),
                                   ),
