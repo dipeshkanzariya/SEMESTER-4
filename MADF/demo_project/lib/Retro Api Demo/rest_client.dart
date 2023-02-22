@@ -1,3 +1,4 @@
+import 'package:demo_project/API%20Demo/add_faculty_page.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
@@ -11,4 +12,24 @@ abstract class RestClient{
 
   @GET("/")
   Future<String> getFaculty();
+
+  @POST("/")
+  @FormUrlEncoded()
+  Future<dynamic> AddFaculty(
+      @Field('FacultyName') name,
+      @Field('FacultyImage') image,
+      @Field('FacultyDepartment') department,
+      @Field('Experience') experience,
+      @Field('Specialization') specialization,
+      @Field('Subjects') subjects,
+      );
+
+  @DELETE("/{id}")
+  Future<dynamic> deleteFaculty(@Path("id") id);
+
+  @PUT("/{id}")
+  Future<dynamic> updateFaculty(
+      @Path("id") id,
+      map
+      );
 }
