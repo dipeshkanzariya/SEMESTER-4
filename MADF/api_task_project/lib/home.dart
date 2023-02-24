@@ -30,7 +30,7 @@ class _NavigationBarPageState extends State<NavigationBarPage> {
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) {
-              return AddNewCar();
+              return AddNewCar(null);
             },
           )).then(
             (value) {

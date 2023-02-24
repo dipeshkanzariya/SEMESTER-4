@@ -4,7 +4,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:http/http.dart' as http;
 
 class Screen3 extends StatefulWidget {
-  var company,
+  var id,
+  company,
       name,
       img1,
       img2,
@@ -16,11 +17,11 @@ class Screen3 extends StatefulWidget {
       model,
       type,
       price,
-      rating,
-      isFav;
+      rating;
 
   Screen3(
       {super.key,
+        required this.id,
       required this.company,
       required this.name,
       required this.img1,
@@ -34,7 +35,7 @@ class Screen3 extends StatefulWidget {
       required this.year,
       required this.price,
       required this.rating,
-      required this.isFav});
+      });
 
   @override
   State<Screen3> createState() => _Screen3State();
@@ -85,19 +86,25 @@ class _Screen3State extends State<Screen3> {
                   children: [
                     InkWell(
                       onTap: () {
-                        Navigator.of(context).pop(widget.isFav = false);
+                        Navigator.of(context).pop();
                       },
                       child: Icon(Icons.arrow_back),
                     ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(5),
+                    InkWell(
+                      onTap: () {
+                        deleteCarFromApi(widget.id);
+                        Navigator.of(context).pop();
+                      },
+                      child: Container(
+                        margin: EdgeInsets.all(10),
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Icon(Icons.delete),
                       ),
-                      child: Icon(Icons.bookmark),
                     )
                   ],
                 ),
@@ -345,7 +352,7 @@ class _Screen3State extends State<Screen3> {
 
   Widget CreateCarouselItem(image) {
     return Image(
-      image: AssetImage(image),
+      image: NetworkImage(image),
       fit: BoxFit.contain,
     );
   }
@@ -393,4 +400,9 @@ class _Screen3State extends State<Screen3> {
       ),
     );
   }
+
+  void deleteCarFromApi(String id){
+    http.delete(Uri.parse('https://631eb51222cefb1edc387662.mockapi.io/Cars/$id'));
+  }
 }
+

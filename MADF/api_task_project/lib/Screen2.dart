@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:api_task_project/Screen3.dart';
 import 'package:api_task_project/Screen4.dart';
+import 'package:api_task_project/add_new_car_page.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -76,10 +77,10 @@ class _Screen2State extends State<Screen2> {
                             snapshot.data![1]['CarName'].toString(), "\$ ${snapshot.data![1]['CarPrice'].toString()}"),
                         CreateCarouselItem(snapshot.data![2]['CarImg1'].toString(),
                             snapshot.data![2]['CarName'].toString(), "\$ ${snapshot.data![2]['CarPrice'].toString()}"),
-                        // CreateCarouselItem(snapshot.data![3]['CarImg1'].toString(),
-                        //     snapshot.data![3]['CarName'].toString(), "\$ ${snapshot.data![3]['CarPrice'].toString()}"),
-                        // CreateCarouselItem(snapshot.data![4]['CarImg1'].toString(),
-                        //     snapshot.data![4]['CarName'].toString(), "\$ ${snapshot.data![4]['CarPrice'].toString()}"),
+                        CreateCarouselItem(snapshot.data![3]['CarImg1'].toString(),
+                            snapshot.data![3]['CarName'].toString(), "\$ ${snapshot.data![3]['CarPrice'].toString()}"),
+                        CreateCarouselItem(snapshot.data![4]['CarImg1'].toString(),
+                            snapshot.data![4]['CarName'].toString(), "\$ ${snapshot.data![4]['CarPrice'].toString()}"),
                       ],
                       options: CarouselOptions(
                         height: 220.0,
@@ -151,12 +152,13 @@ class _Screen2State extends State<Screen2> {
                           return InkWell(
                             onTap: () {
                               setState(() {
-                                cars[index]['isFav'] = true;
+                                // cars[index]['isFav'] = true;
                                 print(snapshot.data![index]);
                               });
                               Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) {
                                   return Screen3(
+                                    id: snapshot.data[index]['id'].toString(),
                                     company: snapshot.data[index]['CarCompany'].toString(),
                                     name: snapshot.data[index]['CarName'].toString(),
                                     img1: snapshot.data[index]['CarImg1'].toString(),
@@ -170,10 +172,12 @@ class _Screen2State extends State<Screen2> {
                                     year: snapshot.data[index]['CarYear'].toString(),
                                     price: snapshot.data[index]['CarPrice'].toString(),
                                     rating: snapshot.data[index]['CarRating'].toString(),
-                                    isFav: cars[index]['isFav'],
+                                    // isFav: cars[index]['isFav'],
                                   );
                                 },)).then((value) {
-                                cars[index]['isFav'] = value;
+                               setState(() {
+
+                               });
                               },);
                             },
                             child: Padding(
@@ -193,22 +197,47 @@ class _Screen2State extends State<Screen2> {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          snapshot.data[index]['CarCompany'].toString(),
-                                          style:
-                                          TextStyle(fontWeight: FontWeight.bold),
-                                        ),
-                                        Text(
-                                          snapshot.data[index]['CarName'].toString(),
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.grey),
+                                        Row(
+                                          children: [
+                                            Column(
+                                              children: [
+                                                Text(
+                                                  snapshot.data[index]['CarCompany'].toString(),
+                                                  style:
+                                                  TextStyle(fontWeight: FontWeight.bold),
+                                                ),
+                                                Text(
+                                                  snapshot.data[index]['CarName'].toString(),
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      color: Colors.grey),
+                                                ),
+                                              ],
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                            ),
+                                            InkWell(
+                                              onTap: () {
+                                                Navigator.of(context).push(MaterialPageRoute(
+                                                  builder: (context) {
+                                                    return AddNewCar(snapshot.data![index]);
+                                                  },
+                                                )).then(
+                                                      (value) {
+                                                    if (value) {
+                                                      setState(() {});
+                                                    }
+                                                  },
+                                                );
+                                              },
+                                                child: Icon(Icons.edit)),
+                                          ],
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         ),
                                         Expanded(
                                           child: Padding(
                                             padding: const EdgeInsets.all(10),
                                             child: Image(
-                                              image: AssetImage(snapshot.data[index]['CarImg1'].toString()),
+                                              image: NetworkImage(snapshot.data[index]['CarImg1'].toString()),
                                               fit: BoxFit.contain,
                                             ),
                                           ),
@@ -280,7 +309,7 @@ class _Screen2State extends State<Screen2> {
             fit: StackFit.expand,
             children: [
               Image(
-                image: AssetImage(image),
+                image: NetworkImage(image),
                 fit: BoxFit.cover,
               ),
             ],

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class AddNewCar extends StatefulWidget {
+  Map? map;
+  AddNewCar(this.map);
+
   @override
   State<AddNewCar> createState() => _AddNewCarState();
 }
@@ -21,6 +24,24 @@ class _AddNewCarState extends State<AddNewCar> {
   var priceController = TextEditingController();
   var ratingController = TextEditingController();
   var formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    companyController.text = widget.map == null ? '' : widget.map!['CarCompany'];
+    nameController.text = widget.map == null ? '' : widget.map!['CarName'];
+    img1Controller.text = widget.map == null ? '' : widget.map!['CarImg1'];
+    img2Controller.text = widget.map == null ? '' : widget.map!['CarImg2'];
+    img3Controller.text = widget.map == null ? '' : widget.map!['CarImg3'];
+    colorController.text = widget.map == null ? '' : widget.map!['CarColor'];
+    gearboxController.text = widget.map == null ? '' : widget.map!['CarGearBox'];
+    modelController.text = widget.map == null ? '' : widget.map!['CarModel'];
+    seatController.text = widget.map == null ? '' : widget.map!['CarSeat'];
+    typeController.text = widget.map == null ? '' : widget.map!['CarType'];
+    yearController.text = widget.map == null ? '' : widget.map!['CarYear'];
+    priceController.text = widget.map == null ? '' : widget.map!['CarPrice'];
+    ratingController.text = widget.map == null ? '' : widget.map!['CarRating'];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,9 +88,16 @@ class _AddNewCarState extends State<AddNewCar> {
                 child: TextButton(
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-                        addCarIntoApi().then((value) {
-                          Navigator.of(context).pop(true);
-                        },);
+                        if(widget.map == null){
+                          addCarIntoApi().then((value) {
+                            Navigator.of(context).pop(true);
+                          },);
+                        }
+                        else{
+                          updateCarIntoApi(widget.map!['id']).then((value) {
+                            Navigator.of(context).pop(true);
+                          },);
+                        }
                       }
                     },
                     child: Padding(
@@ -126,7 +154,7 @@ class _AddNewCarState extends State<AddNewCar> {
 
   Future<void> addCarIntoApi() async {
     Map map = {};
-    map['CarComapny'] = companyController.text;
+    map['CarCompany'] = companyController.text;
     map['CarName'] = nameController.text;
     map['CarImg1'] = img1Controller.text;
     map['CarImg2'] = img2Controller.text;
@@ -140,5 +168,23 @@ class _AddNewCarState extends State<AddNewCar> {
     map['CarPrice'] = priceController.text;
     map['CarRating'] = ratingController.text;
     http.Response res = await http.post(Uri.parse("https://631eb51222cefb1edc387662.mockapi.io/Cars"),body: map);
+  }
+
+  Future<void> updateCarIntoApi(id) async {
+    Map map = {};
+    map['CarCompany'] = companyController.text;
+    map['CarName'] = nameController.text;
+    map['CarImg1'] = img1Controller.text;
+    map['CarImg2'] = img2Controller.text;
+    map['CarImg3'] = img3Controller.text;
+    map['CarColor'] = colorController.text;
+    map['CarGearBox'] = gearboxController.text;
+    map['CarModel'] = modelController.text;
+    map['CarSeat'] = seatController.text;
+    map['CarType'] = typeController.text;
+    map['CarYear'] = companyController.text;
+    map['CarPrice'] = priceController.text;
+    map['CarRating'] = ratingController.text;
+    http.Response res = await http.put(Uri.parse("https://631eb51222cefb1edc387662.mockapi.io/Cars/$id"),body: map);
   }
 }
